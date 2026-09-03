@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Открытка для подруги</title>
+  <style>
+    * { 
+      box-sizing: border-box; 
+      -webkit-tap-highlight-color: transparent;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background-color: #ffb6c1;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    /* 1. Анимированный фоновый узор */
+    .bg-pattern {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      z-index: 1;
+    }
+    .line {
+      white-space: nowrap;
+      color: #87ceeb;
+      font-size: 20px;
+      animation: moveLeft 10s linear infinite;
+    }
+    @keyframes moveLeft {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* Главный контейнер */
+    .container {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      width: 90%;
+    }
+
+    /* 2 & 6. Стикеры-гифки */
+    .gif-sticker {
+      width: 140px;
+      height: 140px;
+      margin-bottom: 15px;
+      object-fit: contain;
+    }
+
+    /* 3 & 4. Кнопки */
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+    }
+    button {
+      border: none;
+      border-radius: 12px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    #btn-yes {
+      background-color: #ff69b4;
+      color: white;
+      padding: 12px 24px;
+      z-index: 20;
+    }
+    #btn-no {
+      background-color: #ffffff;
+      color: #ff69b4;
+      padding: 10px 20px;
+    }
+
+    /* 5. Окошко с пожеланиями */
+    #letter-card {
+      display: none;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      padding: 20px;
+      width: 85%;
+      max-width: 360px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      z-index: 30;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .scroll-box {
+      max-height: 220px;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      text-align: left;
+      font-size: 16px;
+      line-height: 1.5;
+      color: #333;
+      padding-right: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-pattern">
+    <div class="line">● &#9829; ● &#9829; ● &#9829; ● &#9829; ● &#9829; ● &#9829; ● &#9829; ● &#9829; ● &#9829; ● &#9829;</div>
+    <div class="line">● &#9829; ● &#9829; ● &#9829; ● &#9829; ● &#9829; ● &#9829; ● &#9829; ● &#9829; ● &#9829; ● &#9829;</div>
+    <div class="line">● &#9829; ● &#9829; ● &#9829; ● &#9829; ● &#9829; ● &#9829; ● &#9829; ● &#9829; ● &#9829; ● &#9829;</div>
+    <div class="line">● &#9829; ● &#9829; ● &#9829; ● &#9829; ● &#9829; ● &#9829; ● &#9829; ● &#9829; ● &#9829; ● &#9829;</div>
+    <div class="line">● &#9829; ● &#9829; ● &#9829; ● &#9829; ● &#9829; ● &#9829; ● &#9829; ● &#9829; ● &#9829; ● &#9829;</div>
+    <div class="line">● &#9829; ● &#9829; ● &#9829; ● &#9829; ● &#9829; ● &#9829; ● &#9829; ● &#9829; ● &#9829; ● &#9829;</div>
+  </div>
+
+  <div class="container" id="main-container">
+    <img class="gif-sticker" src="https://media.tenor.com/6bC6wP9qMKEAAAAd/cat-love.gif" alt="стикер">
+
+    <div class="buttons">
+      <button id="btn-yes">Да</button>
+      <button id="btn-no">Нет</button>
+    </div>
+  </div>
+
+  <div id="letter-card">
+    <div class="scroll-box">
+      <p>✨ Моя дорогая подруга!</p>
+<p>Ты — самый тёплый и замечательный человек в моей жизни.</p>
+      <p>Желаю тебе океан счастья, море улыбок и чтобы каждый день приносил только радость!</p>
+      <p>Пусть все твои мечты обязательно сбудутся! ❤️</p>
+    </div>
+    <img class="gif-sticker" style="margin-top: 15px; margin-bottom: 0;" src="https://media.tenor.com/6bC6wP9qMKEAAAAd/cat-love.gif" alt="стикер под текстом">
+  </div>
+
+  <script>
+    const btnYes = document.getElementById('btn-yes');
+    const btnNo = document.getElementById('btn-no');
+    const mainContainer = document.getElementById('main-container');
+    const letterCard = document.getElementById('letter-card');
+
+    let scale = 1;
+    
+    // Фразы для кнопки "Нет" (можешь изменить на свои)
+    const noTexts = [
+      "Ты уверена?",
+      "Подумай еще!",
+      "Точно нет?",
+      "Ну пожалуйста...",
+      "Нажми 'Да'!"
+    ];
+    let noIndex = 0;
+
+    function growYesButton() {
+      scale += 0.35;
+      btnYes.style.transform = scale(${scale});
+
+      if (scale >= 3.5) {
+        mainContainer.style.display = 'none';
+        letterCard.style.display = 'flex';
+      }
+    }
+
+    btnNo.addEventListener('click', () => {
+      btnNo.textContent = noTexts[noIndex];
+      noIndex = (noIndex + 1) % noTexts.length;
+      growYesButton();
+    });
+
+    btnYes.addEventListener('click', () => {
+      growYesButton();
+    });
+  </script>
+</body>
+</html>
