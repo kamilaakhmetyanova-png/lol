@@ -15,7 +15,7 @@
       width: 100vw;
       height: 100vh;
       overflow: hidden;
-      background-color: #ffb6c1;
+      background-color: #DCFFFF;
       font-family: Arial, sans-serif;
       display: flex;
       justify-content: center;
@@ -36,8 +36,8 @@
     }
     .line {
       white-space: nowrap;
-      color: #87ceeb;
-      font-size: 20px;
+      color: #FFE5ED;
+      font-size: 100px;
       animation: moveLeft 10s linear infinite;
     }
     @keyframes moveLeft {
@@ -152,8 +152,23 @@
     const btnNo = document.getElementById('btn-no');
     const mainContainer = document.getElementById('main-container');
     const letterCard = document.getElementById('letter-card');
+    const mainSticker = document.getElementById('main-sticker');
+    const letterSticker = document.getElementById('letter-sticker');
+
+const stickersList = [
+  "sticker 1",
+  "sticker 2",
+  "sticker 3"
+];
+
+    const FINAL_STICKER = final sticker
+    
+    let currentStickerIndex = 0;
 
     let scale = 1;
+    
+    mainSticker.src = begin sticker;
+    letterSticker.src = final sticker;
     
     // Фразы для кнопки "Нет" (можешь изменить на свои)
     const noTexts = [
